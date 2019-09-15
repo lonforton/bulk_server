@@ -23,11 +23,19 @@ set_target_properties(bulk_server PROPERTIES
   LINK_FLAGS "-lpthread"
 )
 
+if (WIN32)
 target_link_libraries(bulk_server
   ${Boost_LIBRARIES}
   ws2_32
   wsock32
 )
+endif (WIN32)
+
+if(UNIX)
+target_link_libraries(bulk_server
+  ${Boost_LIBRARIES}
+)
+endif (UNIX)
 
 install(TARGETS bulk_server RUNTIME DESTINATION bin)
 
