@@ -16,7 +16,7 @@ class CommandsHandler
 public:
   CommandsHandler(size_t bulk_size = 0) : _bulk_size(bulk_size)
   {
-    _endpoints_blocks.insert(std::make_pair(_default_endpoint, CommandsBlock()));
+    _endpoints_blocks.insert(std::make_pair<std::string, CommandsBlock>(_default_endpoint, CommandsBlock()));
 
     _outputs.push_back(std::make_unique<DisplayOutput>());
     _outputs.push_back(std::make_unique<FileOutput>());   
@@ -34,7 +34,7 @@ public:
           it->second.increase_brackets_counter();
         }
         else {
-          _endpoints_blocks.insert(std::make_pair(endpoint, CommandsBlock(1)));
+          _endpoints_blocks.insert(std::make_pair<std::string, CommandsBlock>(endpoint, CommandsBlock(1)));
         }        
         break;
 
