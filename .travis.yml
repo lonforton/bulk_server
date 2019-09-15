@@ -7,19 +7,18 @@ matrix:
       compiler: clang
       addons:
         apt:
+          update: true
           sources:
-          - ubuntu-toolchain-r-test
-          - llvm-toolchain-trusty-7
+            - sourceline: 'ppa:mhier/libboost-latest'
+            - ubuntu-toolchain-r-test
+            - llvm-toolchain-trusty-7
           packages: 
             - clang-7
             - libstdc++-7-dev
+            - boost1.67
       env:
       - MATRIX_EVAL="CC=clang-7 && CXX=clang++-7"
-      
-before_script:
-- sudo apt update
-- sudo apt install libboost-test-dev -y
-- sudo apt install libboost-system-dev -y
+
 script:
 - cmake .
 - cmake --build .
