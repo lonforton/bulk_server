@@ -16,7 +16,7 @@ class CommandsHandler
 public:
   CommandsHandler(size_t bulk_size = 0) : _bulk_size(bulk_size)
   {
-    _endpoints_blocks.insert(std::make_pair<std::string, CommandsBlock>(_default_endpoint, CommandsBlock()));
+    _endpoints_blocks.insert(std::make_pair(_default_endpoint, CommandsBlock()));
 
     _outputs.push_back(std::make_unique<DisplayOutput>());
     _outputs.push_back(std::make_unique<FileOutput>());   
@@ -34,7 +34,7 @@ public:
           it->second.increase_brackets_counter();
         }
         else {
-          _endpoints_blocks.insert(std::make_pair<std::string, CommandsBlock>(endpoint, CommandsBlock(1)));
+          _endpoints_blocks.insert(std::make_pair(endpoint, CommandsBlock(1)));
         }        
         break;
 
@@ -115,7 +115,7 @@ private:
 
   size_t _bulk_size = 0;
   enum { opening_bracket = 0, closing_bracket = 1,  other_command = 2 };
-  std::map<std::string, CommandsBlock> _endpoints_blocks;
+  std::map<const std::string, CommandsBlock> _endpoints_blocks;
   const std::string _default_endpoint{"0.0.0.0:00000"};
   std::vector<std::unique_ptr<Output>> _outputs;
   std::atomic_uint unique_file_id;
