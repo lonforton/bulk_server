@@ -7,6 +7,8 @@ endif()
 
 project(bulk VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
+add_definitions("-std=c++11")
+
 find_package(Boost COMPONENTS system REQUIRED)
 find_package(Threads)
 
