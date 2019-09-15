@@ -5,7 +5,7 @@ if(NOT DEFINED ENV{TRAVIS_BUILD_NUMBER})
   set(ENV{TRAVIS_BUILD_NUMBER} "1")
 endif()
 
-project(bulk VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
+project(bulk_server VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 add_definitions("-std=c++11")
 
